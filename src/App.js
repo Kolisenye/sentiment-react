@@ -1,51 +1,37 @@
-import './App.css' ;
-import React, { Component } from 'react';
-import Sentiment from 'sentiment';
-const sentiment = new Sentiment ();
+import React from 'react';
+import './App.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+import Login from './pages/Login'
+import Signup from './pages/Signup'
+import Landing from './pages/Landing'
+import Home from './pages/Home'
 
-class App extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      sentimentScore: null,
-      generalSentiment: null 
-    };
-    this.findSentiment = this.findSentiment.bind(this);
-  }
-
-  findSentiment(event) {
-    const result = sentiment.analyze(event.target.value)
-    console.log(result)
-    this.setState({
-      sentimentScore: result.score
-    })
-    if (result.score < 0) {
-      this.setState({
-        generalSentiment: 'Negative'
-      })
-    } else if (result.score > 0) {
-      this.setState({
-        generalSentiment: 'Positive'
-      })
-    } else {
-      this.setState({
-        generalSentiment: 'Neutral'
-      })
-    }
-  }
-
-  render() {
-    return (
-    <div className="App">
-      <title>Sentiment analyzer</title>
-      <h2>Text sentiment analysis in React</h2>
-      <p>Enter text for real time sentiment analysis:</p>
-      <textarea onChange={this.findSentiment}/>
-      <p>Sentiment Score: {this.state.sentimentScore}</p>
-      <p>General Sentiment: {this.state.generalSentiment}</p>
+function App() {
+  return (
+    <div>
+      <Router>
+        <Switch>
+           <Route exact path="/">
+            <Landing/>
+           </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/signup">
+            <Signup />
+          </Route>
+          <Route path="/home">
+            <Home />
+          </Route>
+        </Switch>
+      </Router> 
     </div>
-    )
-  }
+  )
 }
-export default App;
+
+export default App
