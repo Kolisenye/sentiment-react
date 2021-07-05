@@ -1,51 +1,33 @@
-import React, { Component } from 'react'
+import React, {useState} from 'react'
 import Sentiment from 'sentiment';
-const sentiment = new Sentiment ();
 
-export class Home extends Component {
-   constructor(props) {
-    super(props);
-    this.state = {
-      sentimentScore: null,
-      generalSentiment: null 
-    };
-    this.findSentiment = this.findSentiment.bind(this);
-  }
+function Home() {
+  const sentiment = new Sentiment ();
+  const [sentimentScore, setSentimentScore] = useState(null);
+  const [generalSentiment, setGeneralSentiment] = useState(null);
 
-  findSentiment(event) {
+  function findSentiment(event) {
     const result = sentiment.analyze(event.target.value)
     console.log(result)
-    this.setState({
-      sentimentScore: result.score
-    })
+    setSentimentScore(result.score)
     if (result.score < 0) {
-      this.setState({
-        generalSentiment: 'Negative'
-      })
+      setGeneralSentiment('Negative')
     } else if (result.score > 0) {
-      this.setState({
-        generalSentiment: 'Positive'
-      })
+      setGeneralSentiment('Positive')
     } else {
-      this.setState({
-        generalSentiment: 'Neutral'
-      })
+      setGeneralSentiment('Neutral')
     }
   }
-
-  render() {
-    return (
-    <div className="App">
+  return (
+     <div className="App">
       <title>Sentiment analyzer</title>
       <h2>Text sentiment analysis in React</h2>
       <p>Enter text for real time sentiment analysis:</p>
-      <textarea onChange={this.findSentiment}/>
-      <p>Sentiment Score: {this.state.sentimentScore}</p>
-      <p>General Sentiment: {this.state.generalSentiment}</p>
+      <textarea onChange={findSentiment}/>
+      <p>Sentiment Score: {sentimentScore}</p>
+      <p>General Sentiment: {generalSentiment}</p>
     </div>
-    )
-  }
+  )
 }
 
 export default Home
-
