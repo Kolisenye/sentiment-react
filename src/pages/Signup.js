@@ -9,18 +9,18 @@ function Signup() {
           <img
             className="w-auto h-12 mx-auto"
             src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-            alt="Workflow"
+            alt="Smilex"
           />
           <h2 className="mt-6 text-3xl font-extrabold text-center text-gray-900">
             Sign up
           </h2>
           <p className="mt-2 text-sm text-center text-gray-600">
-            Or{" "}
+            Already have an account?{" "}
             <a
-              href="#"
-              className="font-medium text-indigo-600 hover:text-indigo-500"
+              href="/Login"
+              className="font-medium text-coolGray-800 hover:text-black"
             >
-              start your 14-day free trial
+              Sign In
             </a>
           </p>
         </div>
@@ -60,11 +60,11 @@ function Signup() {
           <div>
             <button
               type="submit"
-              className="relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md group hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-coolGray-800 border border-transparent rounded-md group hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-coolGray-400"
             >
               <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                 <LockClosedIcon
-                  className="w-5 h-5 text-indigo-500 group-hover:text-indigo-400"
+                  className="w-5 h-5 text-coolGray-300 group-hover:text-white"
                   aria-hidden="true"
                 />
               </span>
