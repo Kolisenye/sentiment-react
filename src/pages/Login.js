@@ -1,27 +1,30 @@
 import React from "react";
 import { LockClosedIcon } from "@heroicons/react/solid";
+import { Link } from "react-router-dom";
 
 function Login() {
   return (
     <div className="flex items-center justify-center min-h-screen px-4 py-12 bg-gray-50 sm:px-6 lg:px-8">
       <div className="w-full max-w-md space-y-8">
         <div>
-          <img
-            className="w-auto h-12 mx-auto"
-            src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-            alt="Smilex"
-          />
+          <Link
+            to="/"
+            className="flex justify-center w-auto text-3xl font-bold"
+          >
+            Smi
+            <span className="text-indigo-500">lex</span>
+          </Link>
           <h2 className="mt-6 text-3xl font-extrabold text-center text-gray-900">
             Sign In
           </h2>
           <p className="mt-2 text-sm text-center text-gray-600">
             If you don't have an account{" "}
-            <a
-              href="/Signup"
+            <Link
+              href="/signup"
               className="font-medium text-coolGray-800 hover:text-black"
             >
               Sign Up
-            </a>
+            </Link>
           </p>
         </div>
         <form className="mt-8 space-y-6" action="#" method="POST">
@@ -86,7 +89,7 @@ function Login() {
           <div>
             <button
               type="submit"
-              className="relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-coolGray-800 border border-transparent rounded-md group hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-coolGray-400"
+              className="relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white border border-transparent rounded-md bg-coolGray-800 group hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-coolGray-400"
             >
               <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                 <LockClosedIcon
