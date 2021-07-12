@@ -5,7 +5,7 @@ function Layout(props) {
   return (
     <div>
       <Header />
-      <div className="mx-auto md:max-w-6xl bg-rose-500">{props.children}</div>
+      <div className="mx-auto md:max-w-6xl bg-black">{props.children}</div>
     </div>
   );
 }

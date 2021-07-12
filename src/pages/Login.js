@@ -14,6 +14,7 @@ function Login() {
             Smi
             <span className="text-indigo-500">lex</span>
           </Link>
+          <hr />
           <h2 className="mt-6 text-3xl font-extrabold text-center text-gray-900">
             Sign In
           </h2>
@@ -32,16 +33,16 @@ function Login() {
           <div className="-space-y-px rounded-md shadow-sm">
             <div>
               <label htmlFor="email-address" className="sr-only">
-                Email address
+                Username
               </label>
               <input
-                id="email-address"
-                name="email"
-                type="email"
-                autoComplete="email"
+                id="username"
+                name="username"
+                type="text"
+                autoComplete="username"
                 required
                 className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Email address"
+                placeholder="Username"
               />
             </div>
             <div>

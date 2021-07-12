@@ -12,25 +12,33 @@ function Home() {
     console.log(result);
     setSentimentScore(result.score);
     if (result.score < 0) {
-      setGeneralSentiment("Negative");
+      setGeneralSentiment("negative");
     } else if (result.score > 0) {
-      setGeneralSentiment("Positive");
+      setGeneralSentiment("positive");
     } else {
-      setGeneralSentiment("Neutral");
+      setGeneralSentiment("neutral");
     }
   }
   return (
     <div>
       <Layout>
-        <div className="header">
-          <div className="header-text">Home</div>
+        <div className="mx-10 my-10 items-center static">
+          <p className="items-center">
+            Enter text for real time sentiment analysis:
+          </p>
+          <textarea rows={20} cols={150} onChange={findSentiment} />
+          <br />
+          <button className="font-bold py-2 px-4 rounded bg-gray-400 text-white hover:bg-blue-400">
+            Analyze Text!
+          </button>
+          <div className="text-white">
+            <p>
+              This text has a sentiment score of {sentimentScore}. This means
+              that the overall sentiment or tone of this text is{" "}
+              {generalSentiment}.
+            </p>
+          </div>
         </div>
-        <title>Sentiment analyzer</title>
-        <h2>Text sentiment analysis in React</h2>
-        <p>Enter text for real time sentiment analysis:</p>
-        <textarea onChange={findSentiment} />
-        <p>Sentiment Score: {sentimentScore}</p>
-        <p>General Sentiment: {generalSentiment}</p>
       </Layout>
     </div>
   );

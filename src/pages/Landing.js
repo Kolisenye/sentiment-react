@@ -54,7 +54,7 @@ function landing() {
                   </p>
                   <div className="flex flex-wrap justify-center">
                     <Link
-                      to="/login"
+                      to="/signup"
                       className="px-8 py-3 m-2 text-lg font-semibold bg-indigo-600 rounded text-coolGray-50"
                     >
                       Get started
