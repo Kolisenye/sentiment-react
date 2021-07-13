@@ -1,0 +1,21 @@
+{
+  "name": "koko-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "package": "cd client && npm i && cd ../server && npm i",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kolisenye/sentiment-react.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kolisenye/sentiment-react/issues"
+  },
+  "homepage": "https://github.com/Kolisenye/sentiment-react#readme"
+}
