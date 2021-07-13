@@ -11,18 +11,17 @@ function Login() {
             to="/"
             className="flex justify-center w-auto text-3xl font-bold"
           >
-            Smi
-            <span className="text-indigo-500">lex</span>
+            SMI
+            <span className="text-gray-300">LEX</span>
           </Link>
-          <hr />
-          <h2 className="mt-6 text-3xl font-extrabold text-center text-gray-900">
+          <h2 className="mt-6 text-2xl font-extrabold text-center text-gray-900">
             Sign In
           </h2>
           <p className="mt-2 text-sm text-center text-gray-600">
             If you don't have an account{" "}
             <Link
               href="/signup"
-              className="font-medium text-coolGray-800 hover:text-black"
+              className="font-medium text-coolGray-800 hover:text-black hover:underline"
             >
               Sign Up
             </Link>
@@ -80,7 +79,7 @@ function Login() {
             <div className="text-sm">
               <a
                 href="#"
-                className="font-medium text-coolGray-800 hover:text-coolGray-200"
+                className="font-medium text-coolGray-800 hover:text-coolGray-300 hover:underline"
               >
                 Forgot your password?
               </a>

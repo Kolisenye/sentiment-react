@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Sentiment from "sentiment";
 import Layout from "../Layout/Layout";
+import { Link } from "react-router-dom";
 
 function Home() {
   const sentiment = new Sentiment();
@@ -23,7 +24,7 @@ function Home() {
     <div>
       <Layout>
         <div className="mx-10 my-10 items-center static">
-          <p className="items-center">
+          <p className="items-center text-white">
             Enter text for real time sentiment analysis:
           </p>
           <textarea rows={20} cols={150} onChange={findSentiment} />
