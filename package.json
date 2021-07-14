@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "package": "cd client && npm i && cd ../server && npm i",
+    "migrate": "cd server/migrations && node tables.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

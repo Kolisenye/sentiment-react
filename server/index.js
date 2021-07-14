@@ -15,9 +15,7 @@ app.post("/login", (req, res) => {
     "SELECT * FROM users WHERE email = ? AND password = ?",
     [email, password],
     (err, result) => {
-      if (err) {
-        res.send({ err: err });
-      }
+      if (err) throw err;
 
       if (result.length > 0) {
         return res.send({ loginStatus: true });
@@ -38,7 +36,7 @@ app.post("/register", (req, res) => {
     "INSERT INTO users (email, password, firstname, lastname) VALUES (?,?,?,?)",
     [email, password, firstname, lastname],
     (err, result) => {
-      console.log(err);
+      if (err) throw err;
     }
   );
 });
