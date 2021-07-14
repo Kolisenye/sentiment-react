@@ -11,6 +11,7 @@ db.connect((err) => {
   // table users
   db.query("DROP TABLE IF EXISTS users", (err, result) => {
     if (err) throw err;
+    console.log(result);
   });
   db.query(
     "CREATE TABLE users (firstname VARCHAR(255)," +
@@ -20,6 +21,7 @@ db.connect((err) => {
       ")",
     (err, result) => {
       if (err) throw err;
+      console.log(result);
     }
   );
 });

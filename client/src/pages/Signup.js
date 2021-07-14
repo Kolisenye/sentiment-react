@@ -1,5 +1,5 @@
 import React from "react";
-import { Link as LinkRouter } from "react-router-dom";
+import { Link as LinkRouter, useHistory } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -10,10 +10,12 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import { Toast } from "../components/Toast";
 import axios from "axios";
 
 function Signup() {
   const classes = useStyles();
+  let history = useHistory();
 
   const [signupForm, setSignupForm] = React.useState({
     firstname: "",
@@ -31,8 +33,12 @@ function Signup() {
   function submitSignupForm() {
     axios
       .post(process.env.REACT_APP_DB_URL + "/register", signupForm)
-      .then((res) => {
-        console.log(res);
+      .then(() => {
+        Toast.fire({
+          icon: "success",
+          title: "Details Saved",
+        });
+        history.push("/home");
       });
   }
   return (

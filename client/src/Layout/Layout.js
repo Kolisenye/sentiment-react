@@ -16,6 +16,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import Menu from "./Menu";
 import { mainListItems } from "./sidebar";
+import { logo } from "../components/logo";
 
 function Layout(props) {
   const classes = useStyles();
@@ -42,8 +43,13 @@ function Layout(props) {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
+        elevation={false}
         position="absolute"
-        className={clsx(classes.appBar, open && classes.appBarShift)}
+        className={clsx(
+          "bg-gray-800",
+          classes.appBar,
+          open && classes.appBarShift
+        )}
       >
         <Toolbar className={classes.toolbar}>
           <IconButton
@@ -65,22 +71,25 @@ function Layout(props) {
             noWrap
             className={classes.title}
           >
-            Smilex
+            {logo}
           </Typography>
           <Menu />
         </Toolbar>
       </AppBar>
       <Drawer
         variant="permanent"
-        className="bg-gray-500"
         classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+          paper: clsx(
+            "bg-gray-800 text-gray-100",
+            classes.drawerPaper,
+            !open && classes.drawerPaperClose
+          ),
         }}
         open={open}
       >
         <div className={classes.toolbarIcon}>
-          <div>Smilex</div>
-          <IconButton onClick={handleDrawerClose}>
+          <div className="invisible md:visible">{logo}</div>
+          <IconButton onClick={handleDrawerClose} className="text-gray-100">
             <ChevronLeftIcon />
           </IconButton>
         </div>
@@ -160,7 +169,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
-    "@media screen and (max-width: 768px)": {
+    "@media screen and (min-width: 768px)": {
       visibility: "hidden",
     },
   },
