@@ -1,5 +1,5 @@
 import React from "react";
-import { Link as LinkRouter } from "react-router-dom";
+import { Link as LinkRouter, useHistory } from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -18,6 +18,7 @@ import { Toast } from "../components/Toast";
 
 function Login() {
   const classes = useStyles();
+  let history = useHistory();
 
   const [loginForm, setLoginForm] = React.useState({
     email: "",
@@ -42,7 +43,7 @@ function Login() {
           return;
         }
         if (res.data.loginStatus) {
-          window.location.href = "/home";
+          history.push("/home");
         }
       });
   }
