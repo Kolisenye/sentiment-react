@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Sentiment from "sentiment";
 import Layout from "../Layout/Layout";
 import { Link } from "react-router-dom";
+import Grid from "@material-ui/core/Grid";
 
 function Home() {
   const sentiment = new Sentiment();
@@ -23,23 +24,25 @@ function Home() {
   return (
     <div>
       <Layout>
-        <div className="mx-10 my-10 items-center static">
-          <p className="items-center text-white">
-            Enter text for real time sentiment analysis:
-          </p>
-          <textarea rows={20} cols={150} onChange={findSentiment} />
-          <br />
-          <button className="font-bold py-2 px-4 rounded bg-gray-400 text-white hover:bg-blue-400">
-            Analyze Text!
-          </button>
-          <div className="text-white">
-            <p>
-              This text has a sentiment score of {sentimentScore}. This means
-              that the overall sentiment or tone of this text is{" "}
-              {generalSentiment}.
+        <Grid item xs={12}>
+          <div className="static items-center mx-10 my-10">
+            <p className="items-center">
+              Enter text for real time sentiment analysis:
             </p>
+            <textarea rows={20} cols={150} onChange={findSentiment} />
+            <br />
+            <button className="px-4 py-2 font-bold bg-gray-400 rounded hover:bg-blue-400">
+              Analyze Text!
+            </button>
+            <div className="">
+              <p>
+                This text has a sentiment score of {sentimentScore}. This means
+                that the overall sentiment or tone of this text is{" "}
+                {generalSentiment}.
+              </p>
+            </div>
           </div>
-        </div>
+        </Grid>
       </Layout>
     </div>
   );
