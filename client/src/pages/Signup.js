@@ -1,139 +1,148 @@
 import React from "react";
-import { LockClosedIcon } from "@heroicons/react/solid";
-import { Link } from "react-router-dom";
+import { Link as LinkRouter } from "react-router-dom";
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import Link from "@material-ui/core/Link";
+import Grid from "@material-ui/core/Grid";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
+import axios from "axios";
 
 function Signup() {
-  return (
-    <div className="flex items-center justify-center min-h-screen px-4 py-12 bg-gray-50 sm:px-6 lg:px-8">
-      <div className="w-full max-w-md space-y-8">
-        <div>
-          <Link
-            to="/"
-            className="flex justify-center w-auto text-3xl font-bold"
-          >
-            SMI
-            <span className="text-gray-300">LEX</span>
-          </Link>
-          <h2 className="mt-6 text-3xl font-extrabold text-center text-gray-900">
-            Sign up
-          </h2>
-          <p className="mt-2 text-sm text-center text-gray-600">
-            Already have an account?{" "}
-            <Link
-              to="/login"
-              className="font-medium text-coolGray-800 hover:text-black hover:underline"
-            >
-              Sign In
-            </Link>
-          </p>
-        </div>
-        <form className="mt-8 space-y-6" action="#" method="POST">
-          <input type="hidden" name="remember" defaultValue="true" />
-          <div className="space-y-2 //-space-y-px rounded-md shadow-sm">
-            <div>
-              <label htmlFor="email-address" className="sr-only">
-                First name
-              </label>
-              <input
-                id="first-name"
-                name="firstname"
-                type="text"
-                autoComplete="firstname"
-                required
-                className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="First name"
-              />
-            </div>
-            <div>
-              <label htmlFor="email-address" className="sr-only">
-                Last name
-              </label>
-              <input
-                id="last-name"
-                name="lastname"
-                type="text"
-                autoComplete="lastname"
-                required
-                className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Last name"
-              />
-            </div>
-            <div>
-              <label htmlFor="email-address" className="sr-only">
-                Username
-              </label>
-              <input
-                id="user-name"
-                name="username"
-                type="text"
-                autoComplete="username"
-                required
-                className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Username"
-              />
-            </div>
-            <div>
-              <label htmlFor="email-address" className="sr-only">
-                Email address
-              </label>
-              <input
-                id="email-address"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-                className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Email Address"
-              />
-            </div>
-            <div>
-              <label htmlFor="password" className="sr-only">
-                Password
-              </label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="password"
-                required
-                className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Password"
-              />
-            </div>
-            <div>
-              <label htmlFor="password" className="sr-only">
-                Confirm Password
-              </label>
-              <input
-                id="confirm-password"
-                name="confirmpassword"
-                type="password"
-                autoComplete="password"
-                required
-                className="relative block w-full px-3 py-2 text-gray-900 placeholder-gray-500 border border-gray-300 rounded-none appearance-none rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Confirm Password"
-              />
-            </div>
-          </div>
+  const classes = useStyles();
 
-          <div>
-            <button
-              type="submit"
-              className="relative flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-coolGray-800 border border-transparent rounded-md group hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-coolGray-400"
-            >
-              <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-                <LockClosedIcon
-                  className="w-5 h-5 text-coolGray-300 group-hover:text-white"
-                  aria-hidden="true"
-                />
-              </span>
-              Sign up
-            </button>
-          </div>
+  const [signupForm, setSignupForm] = React.useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: "",
+  });
+
+  function handleSignupForm(e) {
+    setSignupForm({
+      ...signupForm,
+      [e.target.id]: e.target.value,
+    });
+  }
+  function submitSignupForm() {
+    axios
+      .post(process.env.REACT_APP_DB_URL + "/register", signupForm)
+      .then((res) => {
+        console.log(res);
+      });
+  }
+  return (
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Sign up
+        </Typography>
+        <form
+          onSubmit={(e) => e.preventDefault()}
+          className={classes.form}
+          noValidate
+        >
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                onChange={handleSignupForm}
+                autoComplete="fname"
+                name="firstname"
+                variant="outlined"
+                required
+                fullWidth
+                id="firstname"
+                label="First Name"
+                autoFocus
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                onChange={handleSignupForm}
+                variant="outlined"
+                required
+                fullWidth
+                id="lastname"
+                label="Last Name"
+                name="lastname"
+                autoComplete="lname"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                onChange={handleSignupForm}
+                variant="outlined"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                onChange={handleSignupForm}
+                variant="outlined"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+              />
+            </Grid>
+          </Grid>
+          <Button
+            onClick={submitSignupForm}
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            Sign Up
+          </Button>
+          <Grid container justifyContent="flex-end">
+            <Grid item>
+              <Link component={LinkRouter} to="/login" variant="body2">
+                Already have an account? Sign in
+              </Link>
+            </Grid>
+          </Grid>
         </form>
       </div>
-    </div>
+    </Container>
   );
 }
 
 export default Signup;
+
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.primary.main,
+  },
+  form: {
+    width: "100%", // Fix IE 11 issue.
+    marginTop: theme.spacing(3),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));

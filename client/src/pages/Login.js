@@ -8,13 +8,13 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
 import Paper from "@material-ui/core/Paper";
-import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import loginImage from "../assets/images/login.png";
 import axios from "axios";
+import { Toast } from "../components/Toast";
 
 function Login() {
   const classes = useStyles();
@@ -31,9 +31,20 @@ function Login() {
     });
   }
   function submitLoginForm() {
-    axios.post("/api/login").then((res) => {
-      console.log(res);
-    });
+    axios
+      .post(process.env.REACT_APP_DB_URL + "/login", loginForm)
+      .then((res) => {
+        if (res.data.error) {
+          Toast.fire({
+            icon: "error",
+            title: res.data.error,
+          });
+          return;
+        }
+        if (res.data.loginStatus) {
+          window.location.href = "/home";
+        }
+      });
   }
   return (
     <Grid container component="main" className={classes.root}>
